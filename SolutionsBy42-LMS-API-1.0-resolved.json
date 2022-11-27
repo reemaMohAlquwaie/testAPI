@@ -1,0 +1,764 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Learning Management System API",
+    "description": "The Learning Management System API is a private API accessible by Adaa Staff Members to get insights on the training programs offered by the organization to employees of public entities whose performance is measured and monitored.",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/SolutionsBy42/lms/1.0",
+      "description": "Base Path for Testing Purposes Only"
+    }
+  ],
+  "paths": {
+    "/summary": {
+      "get": {
+        "summary": "Provide summary of the training programs offered by Adaa through their Learning Management System",
+        "description": "Return a summarized view of all the training programs offered by Adaa to the employees of public entities",
+        "responses": {
+          "200": {
+            "description": "return successfully the summary details of all the training programs offered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/courses/{course-id}": {
+      "get": {
+        "summary": "Provide detail description of the training program and information about its offering (or events) over the years",
+        "description": "Return the detailed description of the training program and summary of its offering over the years by Adaa",
+        "parameters": [
+          {
+            "name": "course-id",
+            "in": "path",
+            "description": "the unqiue identification number of the training program",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 101
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return the detail description of the training program",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entity/{entity-id}": {
+      "get": {
+        "summary": "Provide detail description of the entity and the training programs the entity employees have particpated in",
+        "description": "Return the detailed description of the training programs the employees of the public entity participated in",
+        "parameters": [
+          {
+            "name": "entity-id",
+            "in": "path",
+            "description": "the unqiue identification number of the entity",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "E01"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully the detail description of the training programs participated in by the public entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_2"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "lmsAverageRating": {
+            "type": "string",
+            "description": "the average rating from all the training programs provided"
+          },
+          "lmsRatingParticipants": {
+            "type": "string",
+            "description": "the total number of participants that provided the rating used to calculate the average score"
+          },
+          "totalNumOfParticipants": {
+            "type": "string",
+            "description": "the total number of participants that attended the training programs offered"
+          },
+          "totalNumOfCourses": {
+            "type": "string",
+            "description": "the total number of training programs offered by Adaa"
+          },
+          "courseSummary": {
+            "type": "array",
+            "description": "summary information of all the training programs offered by Adaa over the years",
+            "items": {
+              "type": "object",
+              "properties": {
+                "year": {
+                  "type": "string",
+                  "description": "the year for which the course-level data is included"
+                },
+                "numOfRegistered": {
+                  "type": "string",
+                  "description": "the number of users who registered in the training programs offered in the year"
+                },
+                "numOfGraduated": {
+                  "type": "string",
+                  "description": "the number of users who graduated from the training programs offered in the year"
+                },
+                "categorySummary": {
+                  "type": "array",
+                  "description": "the course-wise summary for the year based on their category",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "categoryName": {
+                        "type": "string",
+                        "description": "the name of the category"
+                      },
+                      "numOfCourses": {
+                        "type": "string",
+                        "description": "the number of courses in the category offered in the year"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "evaluations": {
+            "type": "array",
+            "description": "list of all evaluations for all the training programs clustered by the year of evaluation",
+            "items": {
+              "type": "object",
+              "properties": {
+                "year": {
+                  "type": "string",
+                  "description": "the year for which the summary evaluation is provided"
+                },
+                "ratingName": {
+                  "type": "string",
+                  "description": "the rating description"
+                },
+                "ratingValue": {
+                  "type": "string",
+                  "description": "the average survey score for the year on a scale from 1 to 5"
+                }
+              }
+            }
+          },
+          "courseList": {
+            "type": "array",
+            "description": "list of all the training programs offered by Adaa",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "unique identification number of the training program"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "the name of the training program"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "the category of the training program"
+                },
+                "numOfParticipants": {
+                  "type": "string",
+                  "description": "the number of total participants in the training program"
+                },
+                "ratingScore": {
+                  "type": "string",
+                  "description": "the average survey score provided by participants in the program on a scale from 1 to 5"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "lmsAverageRating": "4",
+          "lmsRatingParticipants": "15499",
+          "totalNumOfParticipants": "19210",
+          "totalNumOfCourses": "196",
+          "courseSummary": [
+            {
+              "year": "2022",
+              "numOfRegistered": "5400",
+              "numOfGraduates": "5100",
+              "categorySummary": [
+                {
+                  "categoryName": "تخطيط الستراتيجية",
+                  "numOfCourses": "12"
+                },
+                {
+                  "categoryName": "الإدارة",
+                  "numOfCourses": "30"
+                },
+                {
+                  "categoryName": "إدارة الأداء",
+                  "numOfCourses": "15"
+                }
+              ]
+            },
+            {
+              "year": "2021",
+              "numOfRegistered": "4500",
+              "numOfGraduates": "4000",
+              "categorySummary": [
+                {
+                  "categoryName": "تخطيط الستراتيجية",
+                  "numOfCourses": "50"
+                },
+                {
+                  "categoryName": "الإدارة",
+                  "numOfCourses": "10"
+                },
+                {
+                  "categoryName": "إدارة الأداء",
+                  "numOfCourses": "25"
+                }
+              ]
+            }
+          ],
+          "evaluations": [
+            {
+              "year": "2022",
+              "ratingName": "متميز",
+              "ratingValue": "5"
+            },
+            {
+              "year": "2021",
+              "ratingName": "متوسط",
+              "ratingValue": "3"
+            },
+            {
+              "year": "2020",
+              "ratingName": "عالي",
+              "ratingValue": "4"
+            },
+            {
+              "year": "2019",
+              "ratingName": "منخفف",
+              "ratingValue": "1"
+            }
+          ],
+          "courseList": [
+            {
+              "id": "101",
+              "name": "إستراتيجية 101",
+              "category": "تخطيط الستراتيجية",
+              "numOfParticipants": "12230",
+              "ratingScore": "4"
+            },
+            {
+              "id": "102",
+              "name": "إستراتيجية 102",
+              "category": "تخطيط الستراتيجية",
+              "numOfParticipants": "11500",
+              "ratingScore": "5"
+            },
+            {
+              "id": "201",
+              "name": "الإدارة 201",
+              "category": "الإدارة",
+              "numOfParticipants": "13500",
+              "ratingScore": "3"
+            },
+            {
+              "id": "202",
+              "name": "الإدارة 202",
+              "category": "الإدارة",
+              "numOfParticipants": "9452",
+              "ratingScore": "4"
+            },
+            {
+              "id": "301",
+              "name": "مقدمة في إدارة الأداء",
+              "category": "إدارة الأداء",
+              "numOfParticipants": "36000",
+              "ratingScore": "3"
+            }
+          ]
+        }
+      },
+      "inline_response_200_1": {
+        "type": "object",
+        "properties": {
+          "courseID": {
+            "type": "string",
+            "description": "unique identification number of the training program"
+          },
+          "courseName": {
+            "type": "string",
+            "description": "the name of the training program"
+          },
+          "courseDescription": {
+            "type": "string",
+            "description": "the description of the training program"
+          },
+          "courseCategory": {
+            "type": "string",
+            "description": "the category of the training program"
+          },
+          "totalNumOfEntities": {
+            "type": "string",
+            "description": "the total number of entities that have participated in the training programs offered over the years"
+          },
+          "attendanceOption": {
+            "type": "string",
+            "description": "the attendance option(s) through which the training program was offered over the years"
+          },
+          "ratingParticipants": {
+            "type": "string",
+            "description": "the number of participants who rated the training program over the years"
+          },
+          "averageRating": {
+            "type": "string",
+            "description": "the average rating score provided by the rating participants to the training program on a scale of 1 to 5"
+          },
+          "courseEvaluationSummary": {
+            "type": "object",
+            "properties": {
+              "preAssessmentAverageScore": {
+                "type": "string",
+                "description": "the average score for the pre-assessments done for the training program"
+              },
+              "preAssessmentParticipants": {
+                "type": "string",
+                "description": "the number of participants that contributed to the pre-assessment score for the training program"
+              },
+              "postAssessmentAverageScore": {
+                "type": "string",
+                "description": "the average score for the post-assessments done for the training program"
+              },
+              "postAssessmentParticipants": {
+                "type": "string",
+                "description": "the number of participants that contributed to the post-assessment score for the training program"
+              },
+              "reAssessmentAverageScore": {
+                "type": "string",
+                "description": "the average score for the re-assessments done for the training program"
+              },
+              "reAssessmentParticipants": {
+                "type": "string",
+                "description": "the number of participants that contributed to the re-assessment score for the training program"
+              },
+              "graduatesSummary": {
+                "type": "array",
+                "description": "summary information of all the students of the training program offered over the years",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "string",
+                      "description": "the year for which the course-level data is included"
+                    },
+                    "numOfRegistered": {
+                      "type": "string",
+                      "description": "the number of users who registered in the training program offered in the year"
+                    },
+                    "numOfGraduated": {
+                      "type": "string",
+                      "description": "the number of users who graduated from the training programs offered in the year"
+                    }
+                  }
+                }
+              },
+              "surveyResults": {
+                "type": "array",
+                "description": "the breakdown of the course survey results by pillars",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "pillarID": {
+                      "type": "string",
+                      "description": "the identification number of the pillar"
+                    },
+                    "pillarScore": {
+                      "type": "string",
+                      "description": "the average score of the pillar"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "summary of the various evaluations conducted for the training program"
+          },
+          "evaluations": {
+            "type": "array",
+            "description": "list of all evaluations for the training program clustered by the year of evaluation",
+            "items": {
+              "type": "object",
+              "properties": {
+                "year": {
+                  "type": "string",
+                  "description": "the year for which the summary evaluation is provided"
+                },
+                "ratingName": {
+                  "type": "string",
+                  "description": "the rating description"
+                },
+                "ratingValue": {
+                  "type": "string",
+                  "description": "the average survey score for the year on a scale from 1 to 5"
+                }
+              }
+            }
+          },
+          "entityList": {
+            "type": "array",
+            "description": "list of all the entities that have participated in the course over the years",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "unique identification number for the entity"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "the name of the entity"
+                },
+                "numOfParticipants": {
+                  "type": "string",
+                  "description": "the number of participants from the entity that registered for this training program"
+                },
+                "numOfGraduates": {
+                  "type": "string",
+                  "description": "the number of graduates from the entity that registered for this training program"
+                },
+                "numOfRepeats": {
+                  "type": "string",
+                  "description": "the number of participants that re-attempted the course post-assessment for this training program"
+                },
+                "averageScore": {
+                  "type": "string",
+                  "description": "the average survey score provided by the participants of the training program from the entity"
+                }
+              }
+            }
+          },
+          "eventList": {
+            "type": "array",
+            "description": "the list of all the events associated with the training program. An event is an offering of the course  at a scheduled period of time. Each course can have multiple events.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "the unique identification number for the training program event"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "the name of the event"
+                },
+                "startDate": {
+                  "type": "string",
+                  "description": "the start date of the event"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "the type of the event"
+                },
+                "numOfParticipants": {
+                  "type": "string",
+                  "description": "the number of participants in the event"
+                },
+                "city": {
+                  "type": "string",
+                  "description": "the city in which the event was held"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "courseID": "101",
+          "courseName": "إستراتيجية 101",
+          "courseDescription": "هذا وصف نموذجي للدورة",
+          "courseCategory": "تخطيط الستراتيجية",
+          "totalNumOfEntities": "350",
+          "attendanceOption": "دورة الكترونيه",
+          "ratingParticipants": "12230",
+          "averageRating": "4",
+          "courseEvaluationSummary": {
+            "preAssessmentAverageScore": "3",
+            "preAssessmentParticipants": "9500",
+            "postAssessmentAverageScore": "4",
+            "postAssessmentParticipants": "9000",
+            "reAssessmentAverageScore": "4",
+            "reAssessmentParticipants": "495",
+            "graduatesSummary": [
+              {
+                "year": "2022",
+                "numOfRegistered": "500",
+                "numgOfGraduated": "490"
+              },
+              {
+                "year": "2021",
+                "numOfRegistered": "800",
+                "numgOfGraduated": "650"
+              }
+            ],
+            "surveyResults": [
+              {
+                "pillarID": "001",
+                "pillarScore": "3"
+              },
+              {
+                "pillarID": "002",
+                "pillarScore": "4"
+              },
+              {
+                "pillarID": "003",
+                "pillarScore": "4"
+              }
+            ]
+          },
+          "evaluations": [
+            {
+              "year": "2022",
+              "ratingName": "متميز",
+              "ratingValue": "5"
+            },
+            {
+              "year": "2021",
+              "ratingName": "متوسط",
+              "ratingValue": "3"
+            },
+            {
+              "year": "2020",
+              "ratingName": "عالي",
+              "ratingValue": "4"
+            },
+            {
+              "year": "2019",
+              "ratingName": "منخفف",
+              "ratingValue": "1"
+            }
+          ],
+          "entityList": [
+            {
+              "id": "E01",
+              "Name": "وزارة الرياضة",
+              "numOfParticipants": "150",
+              "numOfGraduates": "120",
+              "numOfRepeats": "10",
+              "averageScore": "3"
+            },
+            {
+              "id": "E02",
+              "Name": "وزارة الموارد البشرية والتنمية الاجتماعية",
+              "numOfParticipants": "540",
+              "numOfGraduates": "450",
+              "numOfRepeats": "55",
+              "averageScore": "4"
+            },
+            {
+              "id": "E03",
+              "Name": "وزارة السياحة",
+              "numOfParticipants": "120",
+              "numOfGraduates": "100",
+              "numOfRepeats": "20",
+              "averageScore": "3"
+            }
+          ],
+          "eventList": [
+            {
+              "id": "001",
+              "name": "Event Name 1",
+              "startDate": "٢٤/أكتوبر/٢٠٢١",
+              "type": "بالموقع",
+              "numOfParticipants": "432",
+              "city": "الرياض"
+            },
+            {
+              "id": "002",
+              "name": "Event Name 2",
+              "startDate": "١٥/يناير/٢٠٢١",
+              "type": "بالموقع",
+              "numOfParticipants": "504",
+              "city": "جدة"
+            }
+          ]
+        }
+      },
+      "inline_response_200_2": {
+        "type": "object",
+        "properties": {
+          "entityID": {
+            "type": "string",
+            "description": "unique identification number of the entity"
+          },
+          "entityName": {
+            "type": "string",
+            "description": "the name of the entity"
+          },
+          "entityAddress": {
+            "type": "string",
+            "description": "the address of the entity"
+          },
+          "ratingParticipants": {
+            "type": "string",
+            "description": "the number of participants who rated the training programs they participated over the years"
+          },
+          "averageRating": {
+            "type": "string",
+            "description": "the average rating score provided by the rating participants to the training programs on a scale of 1 to 5"
+          },
+          "totalCoursesAttended": {
+            "type": "string",
+            "description": "the total number of courses taken by the participants from the entity over the years"
+          },
+          "graduatesSummary": {
+            "type": "array",
+            "description": "summary information of all the students of the training programs offered over the years",
+            "items": {
+              "type": "object",
+              "properties": {
+                "year": {
+                  "type": "string",
+                  "description": "the year for which the training program data is included"
+                },
+                "numOfRegistered": {
+                  "type": "string",
+                  "description": "the number of employees who registered in the training programs participated by the entity in the year"
+                },
+                "numOfGraduated": {
+                  "type": "string",
+                  "description": "the number of employees who graduated from the training programs participated by the entity in the year"
+                }
+              }
+            }
+          },
+          "categorySummary": {
+            "type": "array",
+            "description": "the breakdown of the training programs participated in by the entity by category",
+            "items": {
+              "type": "object",
+              "properties": {
+                "categoryName": {
+                  "type": "string",
+                  "description": "the name of the category"
+                },
+                "numOfCourses": {
+                  "type": "string",
+                  "description": "the number of courses from the category that the employees of the entity participated in over the years"
+                }
+              }
+            }
+          },
+          "courseList": {
+            "type": "array",
+            "description": "the list of all the training programs that were participated in by the entity",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "the unique identification number for the training program"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "the name of the training program"
+                },
+                "startDate": {
+                  "type": "string",
+                  "description": "the start date of the event that offered the training program"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "the category of the training program"
+                },
+                "numOfParticipants": {
+                  "type": "string",
+                  "description": "the number of participants from the entity that registered for the training program"
+                },
+                "city": {
+                  "type": "string",
+                  "description": "the city in which the event that offered the training program was held"
+                },
+                "averageScore": {
+                  "type": "string",
+                  "description": "the average survey score provided by the participants of the training program from the entity"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "entityID": "E01",
+          "entityName": "وزارة الرياضة",
+          "entityAddress": "الرياض",
+          "ratingParticipants": "3500",
+          "averageRating": "4",
+          "totalCoursesAttended": "590",
+          "categorySummary": [
+            {
+              "categoryName": "تخطيط الستراتيجية",
+              "numOfCourses": "12"
+            },
+            {
+              "categoryName": "الإدارة",
+              "numOfCourses": "10"
+            },
+            {
+              "categoryName": "إدارة الأداء",
+              "numOfCourses": "5"
+            }
+          ],
+          "courseList": [
+            {
+              "id": "101",
+              "name": "إستراتيجية 101",
+              "startDate": "٢٤/أكتوبر/٢٠٢١",
+              "category": "بالموقع",
+              "numOfParticipants": "45",
+              "city": "الرياض",
+              "averageScore": "4"
+            },
+            {
+              "id": "102",
+              "name": "إستراتيجية 102",
+              "startDate": "١٥/يناير/٢٠٢١",
+              "category": "بالموقع",
+              "numOfParticipants": "36",
+              "city": "جدة",
+              "averageScore": "3"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
