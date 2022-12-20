@@ -1,0 +1,1027 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "IPH API",
+    "description": "The IPH API services the International Performance Hub that is a comprehensive platform for public users to access and engage on global performance indicators.",
+    "version": "0.2"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/SolutionsBy42/iph/0.2",
+      "description": "SwaggerHub API Auto Mocking"
+    },
+    {
+      "url": "https://dev.adaa.42.solutions/iph/0.2",
+      "description": "Base Path for Testing Purposes Only"
+    }
+  ],
+  "paths": {
+    "/summary": {
+      "get": {
+        "summary": "List of key pillars and top five KPIs",
+        "description": "Return key pillars and the top five KPIs for each pillar that includes their latest value, last measured year, global ranking and change in rank from previous measurement",
+        "responses": {
+          "200": {
+            "description": "return key pillars and top five KPIs for each pillar",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/classic/pillars": {
+      "get": {
+        "summary": "List of all classic view pillars",
+        "description": "Return all the pillars, the total number of pillars, and KPIs under the classic view",
+        "responses": {
+          "200": {
+            "description": "return list of pillars and summary information of each pillar under classic view",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_1"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/sdg/pillars": {
+      "get": {
+        "summary": "List of all SDG pillars",
+        "description": "Return all the pillars, the total number of pillars, and KPIs under the SDG view",
+        "responses": {
+          "200": {
+            "description": "return list of pillars and summary information of each pillar under SDG view",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_2"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/classic/pillars/{pillar-id}/indicators": {
+      "get": {
+        "summary": "List of indicators for a specific pillar under the classic view",
+        "description": "Return list of all indicators and summary of key indicators (top five) for a specific pillar under the classic view",
+        "parameters": [
+          {
+            "name": "pillar-id",
+            "in": "path",
+            "description": "the unqiue identification code of the pillar under the classic view",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return list of all indicators and summary of key indicators (top five) for a specific pillar under the classic view",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_3"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/sdg/pillars/{pillar-id}/indicators": {
+      "get": {
+        "summary": "List of indicators for a specific pillar under the SDG view",
+        "description": "Return list of all indicators and summary of key indicators (top five) for a specific pillar under the SDG view",
+        "parameters": [
+          {
+            "name": "pillar-id",
+            "in": "path",
+            "description": "the unqiue identification code of the pillar under the SDG view",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 111
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return list of all indicators and summary of key indicators (top five) for a specific pillar under the SDG view",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_4"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/classic/pillars/{pillar-id}/indicators/{indicator-id}": {
+      "get": {
+        "summary": "Detailed KPI information",
+        "description": "Return the KPI detailed information including country-wise measurement values for comparative analysis under the classic view",
+        "parameters": [
+          {
+            "name": "pillar-id",
+            "in": "path",
+            "description": "the unqiue identification code of the pillar under the classic view",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          },
+          {
+            "name": "indicator-id",
+            "in": "path",
+            "description": "the unqiue identification code of the indicator under the pillar for classic view",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 201
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return the KPI detailed information including country-wise measurement values for comparative analysis under the classic view",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_5"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sdg/pillars/{pillar-id}/indicators/{indicator-id}": {
+      "get": {
+        "summary": "Detailed KPI information for indicators under the SDG view",
+        "description": "Return the KPI detailed information including country-wise measurement values for comparative analysis under the SDG view",
+        "parameters": [
+          {
+            "name": "pillar-id",
+            "in": "path",
+            "description": "the unqiue identification code of the pillar under the SDG view",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 111
+          },
+          {
+            "name": "indicator-id",
+            "in": "path",
+            "description": "the unqiue identification code of the indicator under the pillar for SDG view",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 102
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return the KPI detailed information including country-wise measurement values for comparative analysis under the SDG view",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_6"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "kpis": {
+        "type": "array",
+        "description": "collection of indicators/sub-indicators and associated details",
+        "items": {
+          "$ref": "#/components/schemas/kpis_inner"
+        }
+      },
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "isClassic": {
+            "type": "boolean",
+            "description": "indicates if the classic view data is available"
+          },
+          "isSdg": {
+            "type": "boolean",
+            "description": "indicates if the SDG view data is available"
+          },
+          "classic": {
+            "type": "array",
+            "description": "collection of all elements (key pillars and top KPIs) in the classic view",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_classic"
+            }
+          },
+          "sdg": {
+            "type": "array",
+            "description": "collection of all elements (key pillars and top KPIs) in the SDG view",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_classic"
+            }
+          }
+        },
+        "example": {
+          "isClassic": true,
+          "isSdg": true,
+          "classic": [
+            {
+              "pillarId": "2",
+              "pillarName": "الإعلام",
+              "kpis": [
+                {
+                  "id": "202",
+                  "name": "مؤشر حرية الصحافة",
+                  "value": "33.71",
+                  "unit": "نقطة",
+                  "year": "2022",
+                  "rank": "166",
+                  "outOf": "180",
+                  "change": "+2",
+                  "scale": "0-100",
+                  "polarity": "negative",
+                  "trend": [
+                    "49.80",
+                    "45.10",
+                    "34.50",
+                    "35.60",
+                    "33.71"
+                  ]
+                }
+              ]
+            }
+          ],
+          "sdg": [
+            {
+              "pillarId": "10",
+              "pillarName": "المالية والاستثمار",
+              "kpis": [
+                {
+                  "id": "1002",
+                  "name": "مؤشر حجم الاستثمار الأجنبي المباشر",
+                  "value": "87",
+                  "unit": "نقطة",
+                  "year": "2021",
+                  "rank": "32",
+                  "outOf": "215",
+                  "change": "+4",
+                  "scale": "number",
+                  "polarity": "positive",
+                  "trend": [
+                    "100",
+                    "250",
+                    "290",
+                    "300",
+                    "485"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "inline_response_200_1": {
+        "type": "object",
+        "properties": {
+          "numOfPillars": {
+            "type": "string",
+            "description": "the total number of pillars in the classic view"
+          },
+          "numOfIndicators": {
+            "type": "string",
+            "description": "the total number of indicators in the classic view"
+          },
+          "pillars": {
+            "type": "array",
+            "description": "array of pillars under the classic view",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_1_pillars"
+            }
+          }
+        },
+        "example": {
+          "numOfPillars": "12",
+          "numOfIndicators": "233",
+          "pillars": [
+            {
+              "id": "1",
+              "name": "المالية والاستثمار",
+              "totalIndicators": "12"
+            },
+            {
+              "id": "2",
+              "name": "الإعلام",
+              "totalIndicators": "15"
+            }
+          ]
+        }
+      },
+      "inline_response_200_2": {
+        "type": "object",
+        "properties": {
+          "pillarsDescription": {
+            "type": "string"
+          },
+          "numOfPillars": {
+            "type": "string",
+            "description": "the total number of pillars in the SDG view"
+          },
+          "numOfIndicators": {
+            "type": "string",
+            "description": "the total number of indicators in the SDG view"
+          },
+          "pillars": {
+            "type": "array",
+            "description": "array of pillars under the SDG view",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_2_pillars"
+            }
+          }
+        },
+        "example": {
+          "numOfPillars": "11",
+          "numOfIndicators": "300",
+          "pillars": [
+            {
+              "id": "1",
+              "name": "حقوق الانسان",
+              "totalIndicators": "10"
+            }
+          ]
+        }
+      },
+      "inline_response_200_3": {
+        "type": "object",
+        "properties": {
+          "pillarId": {
+            "type": "string",
+            "description": "unique identification number of the pillar"
+          },
+          "pillarName": {
+            "type": "string",
+            "description": "the name of the pillar"
+          },
+          "kpis": {
+            "$ref": "#/components/schemas/kpis"
+          },
+          "indicators": {
+            "type": "array",
+            "description": "an array of indicators under the pillar",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_3_indicators"
+            }
+          }
+        },
+        "example": {
+          "pillarId": "2",
+          "pillarName": "الإعلام",
+          "kpis": [
+            {
+              "id": "201",
+              "name": "مؤشر حرية الصحافة",
+              "value": "33.71",
+              "unit": "نقطة",
+              "year": "2022",
+              "rank": "166",
+              "outOf": "180",
+              "change": "+2",
+              "scale": "0-100",
+              "polarity": "negative",
+              "trend": [
+                "49.80",
+                "45.10",
+                "34.50",
+                "35.60",
+                "33.71"
+              ]
+            }
+          ],
+          "indicators": [
+            {
+              "id": "201",
+              "name": "مؤشر حرية الصحافة"
+            },
+            {
+              "id": "202",
+              "name": "مؤشر الفجوة بين الجنسين"
+            },
+            {
+              "id": "203",
+              "name": "مؤشر الدول الجيدة"
+            }
+          ]
+        }
+      },
+      "inline_response_200_4": {
+        "type": "object",
+        "properties": {
+          "pillarId": {
+            "type": "string",
+            "description": "unique identification number of the pillar"
+          },
+          "pillarName": {
+            "type": "string",
+            "description": "the name of the pillar"
+          },
+          "kpis": {
+            "$ref": "#/components/schemas/kpis"
+          },
+          "indicators": {
+            "type": "array",
+            "description": "an array of indicators under the pillar",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_4_indicators"
+            }
+          }
+        },
+        "example": {
+          "pillarId": "2",
+          "pillarName": "الإعلام",
+          "kpis": [
+            {
+              "id": "201",
+              "name": "مؤشر حرية الصحافة",
+              "value": "33.71",
+              "unit": "نقطة",
+              "year": "2022",
+              "rank": "166",
+              "outOf": "180",
+              "change": "+2",
+              "scale": "0-100",
+              "polarity": "negative",
+              "trend": [
+                "49.80",
+                "45.10",
+                "34.50",
+                "35.60",
+                "33.71"
+              ]
+            }
+          ],
+          "indicators": [
+            {
+              "id": "201",
+              "name": "مؤشر حرية الصحافة"
+            },
+            {
+              "id": "202",
+              "name": "مؤشر الفجوة بين الجنسين"
+            },
+            {
+              "id": "203",
+              "name": "مؤشر الدول الجيدة"
+            }
+          ]
+        }
+      },
+      "inline_response_200_5": {
+        "type": "object",
+        "properties": {
+          "hasSubIndicators": {
+            "type": "boolean",
+            "description": "indicates if the indicator has any sub-indicators"
+          },
+          "indicatorData": {
+            "$ref": "#/components/schemas/inline_response_200_5_indicatorData"
+          },
+          "ksaData": {
+            "$ref": "#/components/schemas/inline_response_200_5_ksaData"
+          },
+          "topCountry": {
+            "type": "string",
+            "description": "the name of the country that secured the highest rank for this indicator"
+          },
+          "countries": {
+            "type": "array",
+            "description": "the indicator measurements for all the countries and their trend values across the years",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_5_countries"
+            }
+          },
+          "subIndicators": {
+            "$ref": "#/components/schemas/kpis"
+          }
+        },
+        "example": {
+          "hasSubIndicators": true,
+          "indicatorName": "مؤشر حرية الصحافة",
+          "indicatorDescription": "حرية الصحافة هي الإمكانية الفعلية للصحفيين لاختيار وإنتاج ونشر المعلومات التي تصب في المصلحة العامة، بشكل مستقل عن التدخل السياسي والاقتصادي والقانوني والاجتماعي، ودون أي تهديدات ضد سلامتهم الجسدية والعقلية",
+          "indicatorUnit": "نقطة",
+          "indicatorScale": "0-100",
+          "indicatorPolarity": "سالبة",
+          "indicatorSourceName": "مراسلون بلا حدود",
+          "indicatorSourceLink": "https://rsf.org/en/index",
+          "ksaData": {
+            "indicatorKSAValue": "33.71",
+            "indicatorMeasurementYear": "2022"
+          },
+          "topCountry": "النرويج",
+          "countries": [
+            {
+              "code": "NO",
+              "name": "النرويج",
+              "rank": "1",
+              "outOfRank": "180",
+              "value": "92.65",
+              "unit": "نقطة",
+              "rankChange": "+5",
+              "trend": [
+                {
+                  "value": "90.5",
+                  "year": "2021"
+                },
+                {
+                  "value": "88.4",
+                  "year": "2020"
+                }
+              ],
+              "countryGroup": [
+                "W"
+              ]
+            },
+            {
+              "code": "SA",
+              "name": "المملكة العربية السعودية",
+              "rank": "166",
+              "outOfRank": "180",
+              "value": "33.71",
+              "unit": "نقطة",
+              "rankChange": "+5",
+              "trend": [
+                {
+                  "value": "80.5",
+                  "year": "2021"
+                },
+                {
+                  "value": "77.4",
+                  "year": "2020"
+                }
+              ],
+              "countryGroup": [
+                "W",
+                "G20",
+                "GCC"
+              ]
+            }
+          ],
+          "subIndicators": [
+            {
+              "id": "201.1",
+              "name": "المؤشر السياسي",
+              "value": "37.27",
+              "unit": "نقطة",
+              "year": "2022",
+              "rank": "132",
+              "outOf": "180",
+              "change": "+2",
+              "scale": "0-100",
+              "polarity": "سالبة",
+              "trend": [
+                "20.5",
+                "22.5",
+                "31.2",
+                "33.9",
+                "37.27"
+              ]
+            },
+            {
+              "id": "201.2",
+              "name": "المؤشر الاقتصادي",
+              "value": "33.67",
+              "unit": "نقطة",
+              "year": "2022",
+              "rank": "132",
+              "outOf": "180",
+              "change": "-3",
+              "scale": "0-100",
+              "polarity": "سالبة",
+              "trend": [
+                "21.1",
+                "22.5",
+                "29.2",
+                "36.0",
+                "33.67"
+              ]
+            }
+          ]
+        }
+      },
+      "inline_response_200_6": {
+        "type": "object",
+        "properties": {
+          "hasSubIndicators": {
+            "type": "boolean",
+            "description": "indicates if the indicator has any sub-indicators"
+          },
+          "indicatorData": {
+            "$ref": "#/components/schemas/inline_response_200_5_indicatorData"
+          },
+          "ksaData": {
+            "$ref": "#/components/schemas/inline_response_200_5_ksaData"
+          },
+          "topCountry": {
+            "type": "string",
+            "description": "the name of the country that secured the highest rank for this indicator"
+          },
+          "countries": {
+            "type": "array",
+            "description": "the indicator measurements for all the countries and their trend values across the years",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_5_countries"
+            }
+          },
+          "subIndicators": {
+            "$ref": "#/components/schemas/kpis"
+          }
+        },
+        "example": {
+          "hasSubIndicators": true,
+          "indicatorData": {
+            "indicatorName": "مؤشر حرية الصحافة",
+            "indicatorDescription": "حرية الصحافة هي الإمكانية الفعلية للصحفيين لاختيار وإنتاج ونشر المعلومات التي تصب في   المصلحة العامة، بشكل مستقل عن التدخل السياسي والاقتصادي والقانوني والاجتماعي، ودون أي تهديدات ضد سلامتهم الجسدية والعقلية",
+            "indicatorUnit": "نقطة",
+            "indicatorScale": "0-100",
+            "indicatorPolarity": "سالبة",
+            "indicatorSourceName": "مراسلون بلا حدود",
+            "indicatorSourceLink": "https://rsf.org/en/index"
+          },
+          "ksaData": {
+            "indicatorKSAValue": "33.71",
+            "indicatorMeasurementYear": "2022"
+          },
+          "topCountry": "النرويج",
+          "countries": [
+            {
+              "code": "NO",
+              "name": "النرويج",
+              "rank": "1",
+              "outOfRank": "180",
+              "value": "92.65",
+              "unit": "نقطة",
+              "rankChange": "+5",
+              "trend": [
+                {
+                  "value": "90.5",
+                  "year": "2021"
+                },
+                {
+                  "value": "88.4",
+                  "year": "2020"
+                }
+              ],
+              "countryGroup": [
+                "W"
+              ]
+            },
+            {
+              "code": "SA",
+              "name": "المملكة العربية السعودية",
+              "rank": "166",
+              "outOfRank": "180",
+              "value": "33.71",
+              "unit": "نقطة",
+              "rankChange": "+5",
+              "trend": [
+                {
+                  "value": "80.5",
+                  "year": "2021"
+                },
+                {
+                  "value": "77.4",
+                  "year": "2020"
+                }
+              ],
+              "countryGroup": [
+                "W",
+                "G20",
+                "GCC"
+              ]
+            }
+          ],
+          "subIndicators": [
+            {
+              "id": "201.1",
+              "name": "المؤشر السياسي",
+              "value": "37.27",
+              "unit": "نقطة",
+              "year": "2022",
+              "rank": "132",
+              "outOf": "180",
+              "change": "+2",
+              "scale": "0-100",
+              "polarity": "سالبة",
+              "trend": [
+                "20.5",
+                "22.5",
+                "31.2",
+                "33.9",
+                "37.27"
+              ]
+            },
+            {
+              "id": "201.2",
+              "name": "المؤشر الاقتصادي",
+              "value": "33.67",
+              "unit": "نقطة",
+              "year": "2022",
+              "rank": "132",
+              "outOf": "180",
+              "change": "-3",
+              "scale": "0-100",
+              "polarity": "سالبة",
+              "trend": [
+                "21.1",
+                "22.5",
+                "29.2",
+                "36.0",
+                "33.67"
+              ]
+            }
+          ]
+        }
+      },
+      "kpis_inner": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "unique identification number of the KPI"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the KPI"
+          },
+          "value": {
+            "type": "string",
+            "description": "the latest value of the KPI"
+          },
+          "unit": {
+            "type": "string",
+            "description": "the unit of measurement for the KPI"
+          },
+          "year": {
+            "type": "string",
+            "description": "the year when the latest value of the KPI was captured - format YYYY"
+          },
+          "rank": {
+            "type": "string",
+            "description": "the global rank of the KPI"
+          },
+          "outOf": {
+            "type": "string",
+            "description": "the maximum range on which the KPI global rank is assigned"
+          },
+          "change": {
+            "type": "string",
+            "description": "the percentage change in the rank from the previous measurement of the KPI - positive or negative value"
+          },
+          "scale": {
+            "type": "string",
+            "description": "the scale on which the KPI value is captured"
+          },
+          "polarity": {
+            "type": "string",
+            "description": "the KPI polarity indicates its preferred direction - a \"positive\" polarity indicates higher values are preferable and a \"negative\" polarity indicates lower values are preferable"
+          },
+          "trend": {
+            "type": "array",
+            "description": "array of the last five measured values in ascending order (latest value last)",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "inline_response_200_classic": {
+        "type": "object",
+        "properties": {
+          "pillarId": {
+            "type": "string",
+            "description": "unique identification number of the pillar"
+          },
+          "pillarName": {
+            "type": "string",
+            "description": "the name of the pillar"
+          },
+          "kpis": {
+            "$ref": "#/components/schemas/kpis"
+          }
+        }
+      },
+      "inline_response_200_1_pillars": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "unique identification number of the pillar"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the pillar"
+          },
+          "totalIndicators": {
+            "type": "string",
+            "description": "total number of indicators under the pillar"
+          }
+        }
+      },
+      "inline_response_200_2_pillars": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "unique indentification number of the pillar"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the pillar"
+          },
+          "totalIndicators": {
+            "type": "string",
+            "description": "total number of indicators under the pillar"
+          }
+        }
+      },
+      "inline_response_200_3_indicators": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "unqiue identification number of the indicator"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the indicator"
+          }
+        }
+      },
+      "inline_response_200_4_indicators": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "the identification number of the indicator"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the indicator"
+          }
+        }
+      },
+      "inline_response_200_5_indicatorData": {
+        "type": "object",
+        "properties": {
+          "indicatorName": {
+            "type": "string",
+            "description": "the name of the indicator"
+          },
+          "indicatorDescription": {
+            "type": "string",
+            "description": "the description of the indicator"
+          },
+          "indicatorUnit": {
+            "type": "string",
+            "description": "the unit of measurement for the indicator"
+          },
+          "indicatorScale": {
+            "type": "string",
+            "description": "the scale of measurement for the indicator"
+          },
+          "indicatorPolarity": {
+            "type": "string",
+            "description": "the indicator polarity indicates its preferred direction - a \"positive\" polarity indicates higher values are preferable and a \"negative\" polarity indicates lower values are preferable"
+          },
+          "indicatorSourceName": {
+            "type": "string",
+            "description": "the source name from which the indicator values are retrieved from"
+          },
+          "indicatorSourceLink": {
+            "type": "string",
+            "description": "the URL link of source from which the indicator values are retrieved from"
+          }
+        }
+      },
+      "inline_response_200_5_ksaData": {
+        "type": "object",
+        "properties": {
+          "indicatorKSAValue": {
+            "type": "string",
+            "description": "the latest value of the indicator for Saudi Arabia"
+          },
+          "indicatorMeasurementYear": {
+            "type": "string",
+            "description": "the year when the latest value of the indicator was captured - format YYYY"
+          }
+        }
+      },
+      "inline_response_200_5_trend": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "the value of the indicator for the specific year"
+          },
+          "year": {
+            "type": "string",
+            "description": "the year when the value was recorded for the indicator"
+          }
+        }
+      },
+      "inline_response_200_5_countries": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "the country code"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the country"
+          },
+          "rank": {
+            "type": "string",
+            "description": "the global rank of the country"
+          },
+          "outOfRank": {
+            "type": "string",
+            "description": "the maximum range on which the indicator global rank is assigned"
+          },
+          "value": {
+            "type": "string",
+            "description": "the value of the indicator for the country"
+          },
+          "rankChange": {
+            "type": "string",
+            "description": "the change in rank of the country compared to the previous value"
+          },
+          "trend": {
+            "type": "array",
+            "description": "the historical details of the measured indicator across the years",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_5_trend"
+            }
+          },
+          "countryGroup": {
+            "type": "array",
+            "description": "an array which reflects the group(s) the country belongs to - world; g20;gcc;",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
