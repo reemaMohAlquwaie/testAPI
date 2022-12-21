@@ -1,0 +1,1807 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Adaa Integrated Platform (AIP) Backend API",
+    "description": "The Adaa Integrated Platform Backend API provides data warehouse access to the middleware layer of the Adaa National Platform. AIP is the core operations platform that Adaa use for reporting entities performance. AIP allows Adaa to manage strategies, objectives, KPIs and initiatives assigned to entities and monitor their progress on monthly and quarterly basis.",
+    "version": "0.11-oas3"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/SolutionsBy42/aip_backend_API/0.1",
+      "description": "SwaggerHub API Auto Mocking"
+    },
+    {
+      "url": "https://dev.adaa.42.solutions/aip/0.1",
+      "description": "Base Path for Testing Purposes Only"
+    }
+  ],
+  "paths": {
+    "/strategy/{strategy-id}/objectives": {
+      "get": {
+        "summary": "Summary view of the objectives related to a specific strategy",
+        "description": "Return status summary of all the objectives related to a specific strategy and a specific entity",
+        "parameters": [
+          {
+            "name": "strategy-id",
+            "in": "path",
+            "description": "the unique identification id of the strategy",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "entity-id",
+            "in": "query",
+            "description": "the unique identification id of the entity",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Amanah"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully the status summary of all the objectives related to a specific strategy and a specific entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                },
+                "example": {
+                  "indicatorsStatus": [
+                    {
+                      "status": "More than 99%",
+                      "statusHexColor": "#00B388",
+                      "numOfIndicators": "4"
+                    },
+                    {
+                      "status": "85% - 99%",
+                      "statusHexColor": "#FFAB47",
+                      "numOfIndicators": "6"
+                    },
+                    {
+                      "status": "Less than 85%",
+                      "statusHexColor": "#C23A4E",
+                      "numOfIndicators": "2"
+                    },
+                    {
+                      "status": "No Data",
+                      "statusHexColor": "#8C8C8C",
+                      "numOfIndicators": "1"
+                    },
+                    {
+                      "status": "Not Measurable",
+                      "statusHexColor": "#4C4C4C",
+                      "numOfIndicators": "1"
+                    }
+                  ],
+                  "initiativesStatus": [
+                    {
+                      "status": "Less than 5%",
+                      "statusHexColor": "#00B388",
+                      "numOfInitiatives": "2"
+                    },
+                    {
+                      "status": "5% - 15%",
+                      "statusHexColor": "#FFAB47",
+                      "numOfInitiatives": "5"
+                    },
+                    {
+                      "status": "More than 15%",
+                      "statusHexColor": "#C23A4E",
+                      "numOfInitiatives": "2"
+                    },
+                    {
+                      "status": "100%",
+                      "statusHexColor": "#0E86D4",
+                      "numOfInitiatives": "3"
+                    },
+                    {
+                      "status": "Not Measurable",
+                      "statusHexColor": "#4C4C4C",
+                      "numOfInitiatives": "4"
+                    }
+                  ],
+                  "numOfObjectives": "12",
+                  "objectives": [
+                    {
+                      "id": "13",
+                      "code": "Amanah.O13",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "2",
+                      "numOfIndcators": "1"
+                    },
+                    {
+                      "id": "18",
+                      "code": "Amanah.O18",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "2",
+                      "numOfIndcators": "1"
+                    },
+                    {
+                      "id": "28",
+                      "code": "Amanah.O28",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "2",
+                      "numOfIndcators": "1"
+                    },
+                    {
+                      "id": "16",
+                      "code": "Amanah.O16",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "1",
+                      "numOfIndcators": "1"
+                    },
+                    {
+                      "id": "2",
+                      "code": "Amanah.O2",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "2",
+                      "numOfIndcators": "1"
+                    },
+                    {
+                      "id": "7",
+                      "code": "Amanah.O7",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "1",
+                      "numOfIndcators": "1"
+                    },
+                    {
+                      "id": "1",
+                      "code": "Amanah.O1",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "1",
+                      "numOfIndcators": "2"
+                    },
+                    {
+                      "id": "39",
+                      "code": "Amanah.O39",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "1",
+                      "numOfIndcators": "1"
+                    },
+                    {
+                      "id": "50",
+                      "code": "Amanah.O50",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "1",
+                      "numOfIndcators": "2"
+                    },
+                    {
+                      "id": "44",
+                      "code": "Amanah.O44",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "1",
+                      "numOfIndcators": "1"
+                    },
+                    {
+                      "id": "14",
+                      "code": "Amanah.O14",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "1",
+                      "numOfIndcators": "1"
+                    },
+                    {
+                      "id": "11",
+                      "code": "Amanah.O11",
+                      "name": "هدف 4",
+                      "description": "هدف 4",
+                      "numOfInitiatives": "1",
+                      "numOfIndcators": "1"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/strategy/{strategy-id}/objectives/{objective-id}": {
+      "get": {
+        "summary": "Detailed view of the objective related to a specific strategy",
+        "description": "Return detailed summary of the objective related to a specific strategy and a specific entity",
+        "parameters": [
+          {
+            "name": "strategy-id",
+            "in": "path",
+            "description": "the unique identification id of the strategy",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "objective-id",
+            "in": "path",
+            "description": "the unique identification id of the objective",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 50
+          },
+          {
+            "name": "entity-id",
+            "in": "query",
+            "description": "the unique identification id of the entity",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Amanah"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully the detailed summary of the objective related to a specific strategy and a specific entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_1"
+                },
+                "example": {
+                  "objectiveCD": "Amanah.O50",
+                  "objectiveID": "50",
+                  "objectiveName": "هدف 4",
+                  "strategyID": "1",
+                  "strategyName": "رؤية 2030",
+                  "objectiveDescription": "هذا وصف نموذجي",
+                  "indicators": [
+                    {
+                      "cd": "Amanah.O18.K97",
+                      "id": "1888",
+                      "name": "اسم المؤشر",
+                      "statusHexColor": "#FFAB47",
+                      "currentMeasurementYear": "٢٠٢١",
+                      "currentMeasurementQtr": "الثاني",
+                      "previousMeasurementYear": "٢٠٢١",
+                      "previousMeasurementQtr": "الأول",
+                      "currentNormalizedScore": "98.11",
+                      "previousNormalizedScore": "90.11",
+                      "kpiTrend": "up",
+                      "baselineYear": "٢٠١٨",
+                      "baselineValue": "16.81",
+                      "targetYear": "٢٠٢٥",
+                      "targetValue": "53"
+                    },
+                    {
+                      "cd": "Amanah.O19.K53",
+                      "id": "289",
+                      "name": "اسم المؤشر",
+                      "statusHexColor": "#FFAB47",
+                      "currentMeasurementYear": "٢٠٢١",
+                      "currentMeasurementQtr": "الثاني",
+                      "previousMeasurementYear": "٢٠٢١",
+                      "previousMeasurementQtr": "الأول",
+                      "currentNormalizedScore": "91.97",
+                      "previousNormalizedScore": "92.50",
+                      "kpiTrend": "down",
+                      "baselineYear": "٢٠١٩",
+                      "baselineValue": "71.43",
+                      "targetYear": "٢٠٢٥",
+                      "targetValue": "84.82"
+                    }
+                  ],
+                  "initiatives": [
+                    {
+                      "cd": "1-21-006-1462",
+                      "id": "1462",
+                      "name": "اسم المبادرة",
+                      "ownerName": "مالك المبادرة",
+                      "score": "46",
+                      "statusHexColor": "#0E86D4"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/strategy/{strategy-id}/indicators": {
+      "get": {
+        "summary": "Summary view of the indicators related to a specific strategy",
+        "description": "Return status summary of all the indicators related to a specific strategy and a specific entity",
+        "parameters": [
+          {
+            "name": "strategy-id",
+            "in": "path",
+            "description": "the unique identification id of the strategy",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "entity-id",
+            "in": "query",
+            "description": "the unique identification id of the entity",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Amanah"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully the status summary of all the indicators related to a specific strategy and a specific entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_2"
+                },
+                "example": {
+                  "strategyID": "1",
+                  "strategyName": "رؤية 2030",
+                  "indicatorsStatus": [
+                    {
+                      "status": "More than 99%",
+                      "statusHexColor": "#00B388",
+                      "numOfIndicators": "4"
+                    },
+                    {
+                      "status": "85% - 99%",
+                      "statusHexColor": "#FFAB47",
+                      "numOfIndicators": "6"
+                    },
+                    {
+                      "status": "Less than 85%",
+                      "statusHexColor": "#C23A4E",
+                      "numOfIndicators": "2"
+                    },
+                    {
+                      "status": "No Data",
+                      "statusHexColor": "#8C8C8C",
+                      "numOfIndicators": "1"
+                    },
+                    {
+                      "status": "Not Measurable",
+                      "statusHexColor": "#4C4C4C",
+                      "numOfIndicators": "1"
+                    }
+                  ],
+                  "numOfIndicators": "14",
+                  "indicatorPerformance": [
+                    {
+                      "cd": "Amanah.O18.K97",
+                      "id": "1888",
+                      "name": "اسم المؤشر",
+                      "statusHexColor": "#FFAB47",
+                      "currentMeasurementYear": "٢٠٢١",
+                      "currentMeasurementQtr": "الثاني",
+                      "previousMeasurementYear": "٢٠٢١",
+                      "previousMeasurementQtr": "الأول",
+                      "currentNormalizedScore": "98.11",
+                      "previousNormalizedScore": "90.11",
+                      "kpiTrend": "up",
+                      "baselineYear": "٢٠١٨",
+                      "baselineValue": "16.81",
+                      "targetYear": "٢٠٢٥",
+                      "targetValue": "53"
+                    },
+                    {
+                      "cd": "Amanah.O19.K53",
+                      "id": "289",
+                      "name": "اسم المؤشر",
+                      "statusHexColor": "#FFAB47",
+                      "currentMeasurementYear": "٢٠٢١",
+                      "currentMeasurementQtr": "الثاني",
+                      "previousMeasurementYear": "٢٠٢١",
+                      "previousMeasurementQtr": "الأول",
+                      "currentNormalizedScore": "91.97",
+                      "previousNormalizedScore": "92.50",
+                      "kpiTrend": "down",
+                      "baselineYear": "٢٠١٩",
+                      "baselineValue": "71.43",
+                      "targetYear": "٢٠٢٥",
+                      "targetValue": "84.82"
+                    },
+                    {
+                      "cd": "Amanah.O0.K54",
+                      "id": "280",
+                      "name": "اسم المؤشر",
+                      "statusHexColor": "#00B388",
+                      "currentMeasurementYear": "٢٠٢١",
+                      "currentMeasurementQtr": "الثاني",
+                      "previousMeasurementYear": "٢٠٢١",
+                      "previousMeasurementQtr": "الأول",
+                      "currentNormalizedScore": "100",
+                      "previousNormalizedScore": "90",
+                      "kpiTrend": "up",
+                      "baselineYear": "٢٠١٩",
+                      "baselineValue": "25.99",
+                      "targetYear": "٢٠٢٥",
+                      "targetValue": "10"
+                    },
+                    {
+                      "cd": "Amanah.O1.K17",
+                      "id": "257",
+                      "name": "اسم المؤشر",
+                      "statusHexColor": "#00B388",
+                      "currentMeasurementYear": "٢٠٢١",
+                      "currentMeasurementQtr": "الثاني",
+                      "previousMeasurementYear": "٢٠٢١",
+                      "previousMeasurementQtr": "الأول",
+                      "currentNormalizedScore": "88.53",
+                      "previousNormalizedScore": "89",
+                      "kpiTrend": "down",
+                      "baselineYear": "٢٠٢٠",
+                      "baselineValue": "33.33",
+                      "targetYear": "٢٠٢٥",
+                      "targetValue": "96.5"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/strategy/{strategy-id}/indicators/{indicator-id}": {
+      "get": {
+        "summary": "Detailed view of the indicator related to a specific strategy",
+        "description": "Return detailed summary of the indicator related to a specific strategy and a specific entity",
+        "parameters": [
+          {
+            "name": "strategy-id",
+            "in": "path",
+            "description": "the unique identification id of the strategy",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "entity-id",
+            "in": "query",
+            "description": "the unique identification id of the entity",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Amanah"
+          },
+          {
+            "name": "indicator-id",
+            "in": "path",
+            "description": "the unique identification id of the indicator",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1888
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully the detailed summary of the indicator related to a specific strategy and a specific entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_3"
+                },
+                "example": {
+                  "indicatorID": "1888",
+                  "indicatorCode": "Amanah.O18.K97",
+                  "indicatorName": "اسم المؤشر",
+                  "indicatorDescription": "وصف المؤشر",
+                  "measurementPeriod": "سنوي",
+                  "indicatorPerformance": [
+                    {
+                      "cd": "Amanah.O18.K97",
+                      "id": "1888",
+                      "name": "اسم المؤشر",
+                      "statusHexColor": "#FFAB47",
+                      "currentMeasurementYear": "٢٠٢١",
+                      "currentMeasurementQtr": "الأول",
+                      "previousMeasurementYear": "٢٠٢٠",
+                      "previousMeasurementQtr": "الأول",
+                      "currentNormalizedScore": "98.11",
+                      "previousNormalizedScore": "90.11",
+                      "kpiTrend": "up",
+                      "baselineYear": "٢٠١٨",
+                      "baselineValue": "16.81",
+                      "targetYear": "٢٠٢٥",
+                      "targetValue": "53"
+                    }
+                  ],
+                  "historicalView": [
+                    {
+                      "year": "٢٠٢١",
+                      "value": "52",
+                      "colorHex": "#FFAB47",
+                      "changes": "8.44",
+                      "status": "85% - 99%"
+                    },
+                    {
+                      "year": "٢٠٢٠",
+                      "value": "43.56",
+                      "colorHex": "#C23A4E",
+                      "changes": "12.11",
+                      "status": "Less than 85%"
+                    },
+                    {
+                      "year": "٢٠١٩",
+                      "value": "31.45",
+                      "colorHex": "#C23A4E",
+                      "changes": "14.64",
+                      "status": "Less than 85%"
+                    },
+                    {
+                      "year": "٢٠١٨",
+                      "value": "16.81",
+                      "colorHex": "#C23A4E",
+                      "changes": "0",
+                      "status": "Less than 85%"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/strategy/{strategy-id}/initiatives": {
+      "get": {
+        "summary": "Summary view of the initiatives related to a specific strategy",
+        "description": "Return status summary of all the initiatives related to a specific strategy and a specific entity",
+        "parameters": [
+          {
+            "name": "strategy-id",
+            "in": "path",
+            "description": "the unique identification id of the strategy",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "entity-id",
+            "in": "query",
+            "description": "the unique identification id of the entity",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Amanah"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully the status summary of all the initiatives related to a specific strategy and a specific entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_4"
+                },
+                "example": {
+                  "numOfInitiatives": "3",
+                  "numOfMilestones": "45",
+                  "numOfOutputs": "14",
+                  "initiativesStatus": [
+                    {
+                      "status": "Less than 5%",
+                      "statusHexColor": "#00B388",
+                      "numOfInitiatives": "1"
+                    },
+                    {
+                      "status": "5% - 15%",
+                      "statusHexColor": "#FFAB47",
+                      "numOfInitiatives": "0"
+                    },
+                    {
+                      "status": "More than 15%",
+                      "statusHexColor": "#C23A4E",
+                      "numOfInitiatives": "1"
+                    },
+                    {
+                      "status": "100%",
+                      "statusHexColor": "#0E86D4",
+                      "numOfInitiatives": "0"
+                    },
+                    {
+                      "status": "Not Measurable",
+                      "statusHexColor": "#4C4C4C",
+                      "numOfInitiatives": "1"
+                    }
+                  ],
+                  "initiatives": [
+                    {
+                      "cd": "1-18-054-0493",
+                      "id": "0493",
+                      "name": "اسم المبادرة",
+                      "statusHexColor": "#00B388",
+                      "status": "Less than 5%",
+                      "currentNormalizedScore": "73",
+                      "budgetStatus": "status",
+                      "budgetValue": "50000000"
+                    },
+                    {
+                      "cd": "1-24-054-1738",
+                      "id": "1738",
+                      "name": "اسم المبادرة",
+                      "statusHexColor": "#4C4C4C",
+                      "status": "Not Measurable",
+                      "currentNormalizedScore": "0",
+                      "budgetStatus": "status",
+                      "budgetValue": "3000000"
+                    },
+                    {
+                      "cd": "1-21-054-1462",
+                      "id": "1462",
+                      "name": "اسم المبادرة",
+                      "statusHexColor": "#C23A4E",
+                      "status": "More than 15%",
+                      "currentNormalizedScore": "46",
+                      "budgetStatus": "status",
+                      "budgetValue": "5000000"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/strategy/{strategy-id}/initiatives/{initiative-id}": {
+      "get": {
+        "summary": "Detailed view of the initiative related to a specific strategy",
+        "description": "Return detailed summary of the initiative related to a specific strategy and a specific entity",
+        "parameters": [
+          {
+            "name": "strategy-id",
+            "in": "path",
+            "description": "the unique identification id of the strategy",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "entity-id",
+            "in": "query",
+            "description": "the unique identification id of the entity",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Amanah"
+          },
+          {
+            "name": "initiative-id",
+            "in": "path",
+            "description": "the unique identification id of the initiative",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1-18-054-0493"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully the detailed summary of the initiative related to a specific strategy and a specific entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_5"
+                },
+                "example": {
+                  "initiativeID": "0493",
+                  "initiativeCD": "1-18-054-0493",
+                  "initiativeName": "اسم المبادرة",
+                  "initiativeDescription": "وصف المبادرة",
+                  "initiativeDuration": "365",
+                  "budgetStatus": "status",
+                  "normalizedScore": "73",
+                  "actualStartDate": "18/01/2021",
+                  "plannedEndDate": "18/01/2022",
+                  "budgetSummary": {
+                    "totalBudget": "1000000",
+                    "totalOutgoing": "700000"
+                  },
+                  "outputs": {
+                    "numOfOutputs": "5",
+                    "numOfCompletedOutputs": "2",
+                    "numOfIncompleteOutputs": "3",
+                    "outputList": [
+                      {
+                        "id": "0493-1-1",
+                        "name": "مخرج ١",
+                        "weightedBudget": "20%",
+                        "endDate": "18/02/2021",
+                        "outputCategory": "1",
+                        "outputStatus": "1"
+                      },
+                      {
+                        "id": "0493-1-2",
+                        "name": "مخرج ٢",
+                        "weightedBudget": "30%",
+                        "endDate": "30/05/2021",
+                        "outputCategory": "1",
+                        "outputStatus": "1"
+                      },
+                      {
+                        "id": "0493-1-3",
+                        "name": "مخرج ٣",
+                        "weightedBudget": "10%",
+                        "endDate": "28/08/2021",
+                        "outputCategory": "1",
+                        "outputStatus": "0"
+                      },
+                      {
+                        "id": "0493-1-4",
+                        "name": "مخرج ٤",
+                        "weightedBudget": "30%",
+                        "endDate": "18/11/2021",
+                        "outputCategory": "1",
+                        "outputStatus": "0"
+                      },
+                      {
+                        "id": "0493-1-5",
+                        "name": "مخرج ٥",
+                        "weightedBudget": "10%",
+                        "endDate": "31/12/2021",
+                        "outputCategory": "2",
+                        "outputStatus": "0"
+                      }
+                    ],
+                    "milestonesList": [
+                      {
+                        "id": "0493-2-1",
+                        "name": "معالم ١",
+                        "endDate": "28/08/2021",
+                        "progressPercentage": "100%"
+                      },
+                      {
+                        "id": "0493-2-2",
+                        "name": "معالم ٢",
+                        "endDate": "18/11/2021",
+                        "progressPercentage": "55%"
+                      },
+                      {
+                        "id": "0493-2-3",
+                        "name": "معالم ٣",
+                        "endDate": "18/01/2022",
+                        "progressPercentage": "30%"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/common-indicators": {
+      "get": {
+        "summary": "Summary view of the common indicators related to a specific entity",
+        "description": "Return status summary of all the common indicators related to a specific entity",
+        "parameters": [
+          {
+            "name": "entity-id",
+            "in": "query",
+            "description": "the unique identification id of the entity",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "MCIT"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully the status summary of all the common indicators related to a specific entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_6"
+                },
+                "example": {
+                  "indicatorsStatus": [
+                    {
+                      "status": "More than 99%",
+                      "statusHexColor": "#00B388",
+                      "numOfIndicators": "1"
+                    },
+                    {
+                      "status": "85% - 99%",
+                      "statusHexColor": "#FFAB47",
+                      "numOfIndicators": "1"
+                    },
+                    {
+                      "status": "Less than 85%",
+                      "statusHexColor": "#C23A4E",
+                      "numOfIndicators": "0"
+                    },
+                    {
+                      "status": "No Data",
+                      "statusHexColor": "#8C8C8C",
+                      "numOfIndicators": "0"
+                    },
+                    {
+                      "status": "Not Measurable",
+                      "statusHexColor": "#4C4C4C",
+                      "numOfIndicators": "0"
+                    }
+                  ],
+                  "numOfIndicators": "2",
+                  "indicatorPerformance": [
+                    {
+                      "cd": "MCIT.O16.K80",
+                      "id": "563",
+                      "name": "اسم المؤشر",
+                      "statusHexColor": "#FFAB47",
+                      "currentMeasurementYear": "٢٠٢١",
+                      "currentMeasurementQtr": "الثاني",
+                      "previousMeasurementYear": "٢٠٢١",
+                      "previousMeasurementQtr": "الأول",
+                      "currentNormalizedScore": "98.11",
+                      "previousNormalizedScore": "90.11",
+                      "kpiTrend": "up",
+                      "baselineYear": "٢٠١٧",
+                      "baselineValue": "38.53",
+                      "targetYear": "٢٠٢٥",
+                      "targetValue": "53"
+                    },
+                    {
+                      "cd": "MCIT.O28.K2",
+                      "id": "6",
+                      "name": "اسم المؤشر",
+                      "statusHexColor": "#00B388",
+                      "currentMeasurementYear": "٢٠٢١",
+                      "currentMeasurementQtr": "الثاني",
+                      "previousMeasurementYear": "٢٠٢١",
+                      "previousMeasurementQtr": "الأول",
+                      "currentNormalizedScore": "91.97",
+                      "previousNormalizedScore": "92.50",
+                      "kpiTrend": "down",
+                      "baselineYear": "٢٠١٨",
+                      "baselineValue": "12.06",
+                      "targetYear": "٢٠٢٥",
+                      "targetValue": "84.82"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/common-indicators/{indicator-id}": {
+      "get": {
+        "summary": "Detailed view of the common indicator related to a specific entity",
+        "description": "Return detailed summary of the common indicator related to a specific entity",
+        "parameters": [
+          {
+            "name": "entity-id",
+            "in": "query",
+            "description": "the unique identification id of the entity",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "MCIT"
+          },
+          {
+            "name": "indicator-id",
+            "in": "path",
+            "description": "the unique identification id of the common indicator",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 563
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully the detailed summary of the common indicator related to a specific entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_3"
+                },
+                "example": {
+                  "indicatorID": "563",
+                  "indicatorCode": "MCIT.O16.K80",
+                  "indicatorName": "اسم المؤشر",
+                  "indicatorDescription": "وصف المؤشر",
+                  "measurementPeriod": "ربع سنوي",
+                  "indicatorPerformance": [
+                    {
+                      "cd": "MCIT.O16.K80",
+                      "id": "563",
+                      "name": "اسم المؤشر",
+                      "statusHexColor": "#FFAB47",
+                      "currentMeasurementYear": "٢٠٢١",
+                      "currentMeasurementQtr": "الأول",
+                      "previousMeasurementYear": "٢٠٢٠",
+                      "previousMeasurementQtr": "الأول",
+                      "currentNormalizedScore": "23",
+                      "previousNormalizedScore": "20",
+                      "kpiTrend": "up",
+                      "baselineYear": "٢٠١٨",
+                      "baselineValue": "17",
+                      "targetYear": "٢٠٢٥",
+                      "targetValue": "86"
+                    }
+                  ],
+                  "historicalView": [
+                    {
+                      "year": "2021",
+                      "value": "23",
+                      "colorHex": "#FFAB47",
+                      "changes": "3",
+                      "status": "85% - 99%"
+                    },
+                    {
+                      "year": "2020",
+                      "value": "20",
+                      "colorHex": "#FFAB47",
+                      "changes": "5",
+                      "status": "85% - 99%"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/late-performance/indicators": {
+      "get": {
+        "summary": "List view of all the late indicators related to a specific entity",
+        "description": "Return summary list of all the late indicators related to a specific entity",
+        "parameters": [
+          {
+            "name": "entity-id",
+            "in": "query",
+            "description": "the unqiue identification id of the entity",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "MCIT"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully the summary list of all the late indicators related to a specific entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/inline_response_200_7"
+                  }
+                },
+                "example": [
+                  {
+                    "indicatorID": "563",
+                    "indicatorCode": "MCIT.O16.K80",
+                    "indicatorName": "اسم المؤشر",
+                    "objectiveName": "وصف المؤشر",
+                    "strategyName": "سنوي",
+                    "strategyID": "1",
+                    "normalizedScore": "73",
+                    "statusHexColor": "#FFAB47"
+                  },
+                  {
+                    "indicatorID": "6",
+                    "indicatorCode": "MCIT.O28.K2",
+                    "indicatorName": "اسم المؤشر",
+                    "objectiveName": "وصف المؤشر",
+                    "strategyName": "سنوي",
+                    "strategyID": "2",
+                    "normalizedScore": "54",
+                    "statusHexColor": "#C23A4E"
+                  }
+                ]
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/late-performance/initiatives": {
+      "get": {
+        "summary": "List view of all the late initiatives related to a specific entity",
+        "description": "Return summary list of all the late initiatives related to a specific entity",
+        "parameters": [
+          {
+            "name": "entity-id",
+            "in": "query",
+            "description": "the unqiue identification id of the entity",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "MCIT"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully the summary list of all the late initiatives related to a specific entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/inline_response_200_8"
+                  }
+                },
+                "example": [
+                  {
+                    "initiativeID": "0493",
+                    "initiativeCode": "1-18-054-0493",
+                    "initiativeName": "اسم المبادرة",
+                    "objectiveName": "وصف المبادرة",
+                    "strategyName": "سنوي",
+                    "strategyID": "1",
+                    "normalizedScore": "74",
+                    "statusHexColor": "#C23A4E"
+                  },
+                  {
+                    "initiativeID": "0494",
+                    "initiativeCode": "1-18-054-0494",
+                    "initiativeName": "اسم المبادرة",
+                    "objectiveName": "وصف المبادرة",
+                    "strategyName": "سنوي",
+                    "strategyID": "2",
+                    "normalizedScore": "0",
+                    "statusHexColor": "#4C4C4C'\n"
+                  }
+                ]
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "indicatorPerformance": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "description": "the unique code of the KPI, its format is - Entity code.Objective number.KPI number"
+          },
+          "id": {
+            "type": "string",
+            "description": "the unique ID for the KPI"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name for the KPI"
+          },
+          "statusHexColor": {
+            "type": "string",
+            "description": "the status hex color approved by the organization"
+          },
+          "currentMeasurementYear": {
+            "type": "string",
+            "description": "the year for which the score for the KPI is included"
+          },
+          "currentMeasurementQtr": {
+            "type": "string",
+            "description": "the quarter for which the score for the KPI is included"
+          },
+          "previousMeasurementYear": {
+            "type": "string",
+            "description": "the year for which the previous value of the KPI is used for calculating the difference change as reflected in the KPI Trend value"
+          },
+          "previousMeasurementQtr": {
+            "type": "string",
+            "description": "the quarter for which the previous value of the KPI is used for calculating the difference change as reflected in the KPI Trend value"
+          },
+          "currentNormalizedScore": {
+            "type": "string",
+            "description": "the KPI score normalized, its format is a number between 0 and 100"
+          },
+          "previousNormalizedScore": {
+            "type": "string",
+            "description": "the previous KPI normalized score for calculating the difference change as reflected in the KPI Trend value"
+          },
+          "kpiTrend": {
+            "type": "string",
+            "description": "lookup ID for KPI trend is a direction (Up is better or Down is worse) that is based on a comparison between an actual value and a target value difference of current period and previous period. Taken into consideration, data availability and KPI polarity"
+          },
+          "baselineYear": {
+            "type": "string",
+            "description": "the baseline year"
+          },
+          "baselineValue": {
+            "type": "string",
+            "description": "the baseline value for targets"
+          },
+          "targetYear": {
+            "type": "string",
+            "description": "the target year"
+          },
+          "targetValue": {
+            "type": "string",
+            "description": "the target value"
+          }
+        },
+        "description": "Detailed information about the performance of an indicator"
+      },
+      "indicatorStatus": {
+        "type": "array",
+        "description": "A sorted list of KPI status (from green to dark gray) and the number of indicators that belong to that status category",
+        "items": {
+          "$ref": "#/components/schemas/indicatorStatus_inner"
+        }
+      },
+      "initiativeStatus": {
+        "type": "array",
+        "description": "A sorted list of initiative status (from green to dark gray) and the number of initiatives that belong to that status category",
+        "items": {
+          "$ref": "#/components/schemas/initiativeStatus_inner"
+        }
+      },
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "indicatorsStatus": {
+            "$ref": "#/components/schemas/indicatorStatus"
+          },
+          "initiativesStatus": {
+            "$ref": "#/components/schemas/initiativeStatus"
+          },
+          "numOfObjectives": {
+            "type": "string",
+            "description": "the total number of objectives under the selected strategy for the entity"
+          },
+          "objectives": {
+            "type": "array",
+            "description": "the list of all the objectives under the selected strategy for the entity",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_objectives"
+            }
+          }
+        }
+      },
+      "inline_response_200_1": {
+        "type": "object",
+        "properties": {
+          "objectiveCD": {
+            "type": "string",
+            "description": "the unique code of the Objective (Entity code.Objective number)"
+          },
+          "objectiveID": {
+            "type": "string",
+            "description": "the unique ID for the Objective"
+          },
+          "objectiveName": {
+            "type": "string",
+            "description": "the name of the Objective"
+          },
+          "strategyID": {
+            "type": "string",
+            "description": "the unique ID for the strategy"
+          },
+          "strategyName": {
+            "type": "string",
+            "description": "the name of the strategy"
+          },
+          "objectiveDescription": {
+            "type": "string",
+            "description": "the description of the objective"
+          },
+          "indicators": {
+            "type": "array",
+            "description": "list of all the indicators associated with the objective along with their summary performance",
+            "items": {
+              "$ref": "#/components/schemas/indicatorPerformance"
+            }
+          },
+          "initiatives": {
+            "type": "array",
+            "description": "list of all the initiatives associated with the objective along with their summary performance",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_1_initiatives"
+            }
+          }
+        }
+      },
+      "inline_response_200_2": {
+        "type": "object",
+        "properties": {
+          "strategyID": {
+            "type": "string",
+            "description": "the unique ID for the strategy"
+          },
+          "strategyName": {
+            "type": "string",
+            "description": "the name of the strategy"
+          },
+          "indicatorStatus": {
+            "$ref": "#/components/schemas/indicatorStatus"
+          },
+          "numOfIndicators": {
+            "type": "string",
+            "description": "the total number of indicators related to the specific strategy and the specific entity"
+          },
+          "indicatorPerformance": {
+            "type": "array",
+            "description": "the list of all the indicators and their performance summaries",
+            "items": {
+              "$ref": "#/components/schemas/indicatorPerformance"
+            }
+          }
+        }
+      },
+      "inline_response_200_3": {
+        "type": "object",
+        "properties": {
+          "indicatorID": {
+            "type": "string",
+            "description": "the unique identification id of the indicator"
+          },
+          "indicatorCode": {
+            "type": "string",
+            "description": "the unique code of the indicator"
+          },
+          "indicatorName": {
+            "type": "string",
+            "description": "the name of the indicator"
+          },
+          "indicatorDescription": {
+            "type": "string",
+            "description": "the description of the indicator"
+          },
+          "measurementPeriod": {
+            "type": "string",
+            "description": "the period of measurement"
+          },
+          "indicatorPerformance": {
+            "$ref": "#/components/schemas/indicatorPerformance"
+          },
+          "historicalView": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_3_historicalView"
+            }
+          }
+        }
+      },
+      "inline_response_200_4": {
+        "type": "object",
+        "properties": {
+          "numOfInitiatives": {
+            "type": "string",
+            "description": "the total number of initiatives related to the specific strategy and the specific entity"
+          },
+          "numOfMilestones": {
+            "type": "string",
+            "description": "the total number of milestones related to the specific strategy and the specific entity"
+          },
+          "numOfOutputs": {
+            "type": "string",
+            "description": "the total number of outputs related to the specific strategy and the specific entity"
+          },
+          "initiativesStatus": {
+            "$ref": "#/components/schemas/initiativeStatus"
+          },
+          "initiatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_4_initiatives"
+            }
+          }
+        }
+      },
+      "inline_response_200_5": {
+        "type": "object",
+        "properties": {
+          "initiativeID": {
+            "type": "string",
+            "description": "the unique ID for the Initiative"
+          },
+          "initiativeCD": {
+            "type": "string",
+            "description": "the unique Code for the initiative, its format - visoin code (1 digits) - program code (2 digits) - entity code (3 digits) - unique ID for the initiative (4 digits)"
+          },
+          "initiativeName": {
+            "type": "string",
+            "description": "the name of the Initiative"
+          },
+          "initiativeDescription": {
+            "type": "string",
+            "description": "the description of the Initiative"
+          },
+          "initiativeDuration": {
+            "type": "string",
+            "description": "the duration of the Initiative"
+          },
+          "budgetStatus": {
+            "type": "string",
+            "description": "the budget status of the Initiative"
+          },
+          "normalizedScore": {
+            "type": "string",
+            "description": "the normalized score for the Initiative"
+          },
+          "actualStartDate": {
+            "type": "string",
+            "description": "the actual date to start the Initiative"
+          },
+          "plannedEndDate": {
+            "type": "string",
+            "description": "the planned date to finish the Initiative"
+          },
+          "budgetSummary": {
+            "$ref": "#/components/schemas/inline_response_200_5_budgetSummary"
+          },
+          "outputs": {
+            "$ref": "#/components/schemas/inline_response_200_5_outputs"
+          },
+          "milestonesList": {
+            "type": "array",
+            "description": "the list of  milestones related to the Initiative",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_5_milestonesList"
+            }
+          }
+        }
+      },
+      "inline_response_200_6": {
+        "type": "object",
+        "properties": {
+          "indicatorStatus": {
+            "$ref": "#/components/schemas/indicatorStatus"
+          },
+          "numOfIndicators": {
+            "type": "string",
+            "description": "the total number of common indicators related to the specific entity"
+          },
+          "indicatorPerformance": {
+            "type": "array",
+            "description": "the list of all the common indicators and their performance summaries",
+            "items": {
+              "$ref": "#/components/schemas/indicatorPerformance"
+            }
+          }
+        }
+      },
+      "inline_response_200_7": {
+        "type": "object",
+        "properties": {
+          "indicatorID": {
+            "type": "string",
+            "description": "the unique identification id of the indicator"
+          },
+          "indicatorCode": {
+            "type": "string",
+            "description": "the unique code of the indicator"
+          },
+          "indicatorName": {
+            "type": "string",
+            "description": "the name of the indicator"
+          },
+          "objectiveName": {
+            "type": "string",
+            "description": "the name of the objective the indicator belongs to"
+          },
+          "strategyName": {
+            "type": "string",
+            "description": "the name of the strategy the indicator belongs to"
+          },
+          "strategyID": {
+            "type": "string",
+            "description": "the unique identification id of the strategy"
+          },
+          "normalizedScore": {
+            "type": "string",
+            "description": "the KPI score normalized, its format is a number between 0 and 100"
+          },
+          "statusHexColor": {
+            "type": "string",
+            "description": "the status hex color approved by the organization"
+          }
+        }
+      },
+      "inline_response_200_8": {
+        "type": "object",
+        "properties": {
+          "initiativeID": {
+            "type": "string",
+            "description": "the unique identification id of the initiative"
+          },
+          "initiativeCode": {
+            "type": "string",
+            "description": "the unique code of the initiative"
+          },
+          "initiativeName": {
+            "type": "string",
+            "description": "the name of the initiative"
+          },
+          "objectiveName": {
+            "type": "string",
+            "description": "the name of the objective the initiative belongs to"
+          },
+          "strategyName": {
+            "type": "string",
+            "description": "the name of the strategy the initiative belongs to"
+          },
+          "strategyID": {
+            "type": "string",
+            "description": "the unique identification id of the strategy"
+          },
+          "normalizedScore": {
+            "type": "string",
+            "description": "the initiative score normalized, its format is a number between 0 and 100"
+          },
+          "statusHexColor": {
+            "type": "string",
+            "description": "the status hex color approved by the organization"
+          }
+        }
+      },
+      "indicatorStatus_inner": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "the status title",
+            "enum": [
+              "More than 99%",
+              "85% - 99%",
+              "Less than 85%",
+              "No Data",
+              "Not Measurable"
+            ]
+          },
+          "statusHexColor": {
+            "type": "string",
+            "description": "the status hex color approved by the organization"
+          },
+          "numOfIndicators": {
+            "type": "integer",
+            "description": "the number of indicators that belong to the status"
+          }
+        },
+        "description": "Each item in the list of KPI status that includes - the status name, status hex color code and the number of indicators that belong to that status"
+      },
+      "initiativeStatus_inner": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "the status title which is the percentage behind the planned achievement of milestones",
+            "enum": [
+              "Less than 5%",
+              "5% - 15%",
+              "More than 15%",
+              "100%",
+              "Not Measurable"
+            ]
+          },
+          "statusHexColor": {
+            "type": "string",
+            "description": "the status hex color approved by the organization"
+          },
+          "numOfInitiatives": {
+            "type": "integer",
+            "description": "the number of initiatives that belong to the status"
+          }
+        },
+        "description": "Each item in the list of initiative status that includes - the status name, status hex color code and the number of initiatives that belong to that status"
+      },
+      "inline_response_200_objectives": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "the unique ID for the Objective"
+          },
+          "code": {
+            "type": "string",
+            "description": "the unique code of the Objective (Entity code.Objective number)"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the Objective"
+          },
+          "description": {
+            "type": "string",
+            "description": "the description of the Objective"
+          },
+          "numOfInitiatives": {
+            "type": "string",
+            "description": "the number of initiaitves under the Objective"
+          },
+          "numOfIndcators": {
+            "type": "string",
+            "description": "the number of indicators under the Objective"
+          }
+        }
+      },
+      "inline_response_200_1_initiatives": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "description": "the unique code for the initiative"
+          },
+          "id": {
+            "type": "string",
+            "description": "the unique ID for the initiative"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the initiative"
+          },
+          "ownerName": {
+            "type": "string",
+            "description": "the name of the owner of the initiative"
+          },
+          "score": {
+            "type": "string",
+            "description": "the recorded score value of the initiative"
+          },
+          "statusHexColor": {
+            "type": "string",
+            "description": "the status hex color approved by the organization"
+          }
+        }
+      },
+      "inline_response_200_3_historicalView": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "string",
+            "description": "the measurement year"
+          },
+          "value": {
+            "type": "string",
+            "description": "the value of the indicator"
+          },
+          "colorHex": {
+            "type": "string",
+            "description": "the color status Hex for the indicator"
+          },
+          "changes": {
+            "type": "string",
+            "description": "the change in the indicator from the previous value"
+          },
+          "status": {
+            "type": "string",
+            "description": "the status for the indicator"
+          }
+        }
+      },
+      "inline_response_200_4_initiatives": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "description": "the unique code for the initiative, its format is - vison code (1 digits) - program code (2 digits) - entity code (3 digits) - unique ID for the initiative (4 digits)"
+          },
+          "id": {
+            "type": "string",
+            "description": "the unique ID for the initiative"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the initiative"
+          },
+          "statusHexColor": {
+            "type": "string",
+            "description": "the status hex color approved by the organization"
+          },
+          "status": {
+            "type": "string",
+            "description": "the status title which is the percentage behind the planned achievement of milestones",
+            "enum": [
+              "Less than 5%",
+              "5% - 15%",
+              "More than 15%",
+              "100%",
+              "Not Measurable"
+            ]
+          },
+          "currentNormalizedScore": {
+            "type": "string",
+            "description": "the KPI score normalized, its format is a number between 0 and 100"
+          },
+          "budgetStatus": {
+            "type": "string",
+            "description": "the initiative budget status"
+          },
+          "budgetValue": {
+            "type": "string",
+            "description": "the total budget as per program ceiling"
+          }
+        }
+      },
+      "inline_response_200_5_budgetSummary": {
+        "type": "object",
+        "properties": {
+          "totalBudget": {
+            "type": "string",
+            "description": "the total budget as per program ceiling"
+          },
+          "totalOutgoing": {
+            "type": "string",
+            "description": "the total outgoing budget"
+          }
+        },
+        "description": "the summary of the budget (total vs utilized) for the Initiative"
+      },
+      "inline_response_200_5_outputs_outputList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "the unique ID for the output"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the output"
+          },
+          "weightedBudget": {
+            "type": "string",
+            "description": "the output budget weight"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "the planned completion date for the output"
+          },
+          "outputCategory": {
+            "type": "string",
+            "description": "the output classification description"
+          },
+          "outputStatus": {
+            "type": "string",
+            "description": "the completion status of the output"
+          }
+        }
+      },
+      "inline_response_200_5_outputs": {
+        "type": "object",
+        "properties": {
+          "numOfOutputs": {
+            "type": "string",
+            "description": "the total number of outputs related to the Initiative"
+          },
+          "numOfCompletedOutputs": {
+            "type": "string",
+            "description": "the total number of completed outputs related to the Initiative"
+          },
+          "numOfIncompleteOutputs": {
+            "type": "string",
+            "description": "the total number of incomplete outputs related to the Initiative"
+          },
+          "outputList": {
+            "type": "array",
+            "description": "an array of items containing information related to each output related to the Initiative",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_5_outputs_outputList"
+            }
+          }
+        },
+        "description": "the list of outputs related to the Initiative"
+      },
+      "inline_response_200_5_milestonesList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "the unique ID for the milestone"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the milestone"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "the planned completion date for the milestone"
+          },
+          "progressPercentage": {
+            "type": "string",
+            "description": "the cumulative completion percentage for the milestone"
+          }
+        }
+      }
+    }
+  }
+}
