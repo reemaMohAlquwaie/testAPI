@@ -1,0 +1,929 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Maturity Assessment API",
+    "description": "The Maturity Assessment API is an entity specific private API that provides maturity assessment information conducted by the entity.",
+    "version": "0.2"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/SolutionsBy42/maturity-assessment/1.0",
+      "description": "Base Path for Testing Purposes Only"
+    }
+  ],
+  "paths": {
+    "/entity/{entity-id}/latestAssessment": {
+      "get": {
+        "summary": "Provide the maturity assessment report for the latest assessment conducted by the entity",
+        "description": "Return all the assessment details related to the latest maturity assessment done by the entity",
+        "parameters": [
+          {
+            "name": "entity-id",
+            "in": "path",
+            "description": "the unqiue identification code for the entity",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Amanah"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully all the assessment details related to the latest maturity assessment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/entity/{entity-id}/latestAssessment/history": {
+      "get": {
+        "summary": "Provide the historical view of the maturity assessment for the latest assessment conducted by the entity",
+        "description": "Return all the historical assessment results related to the latest maturity assessment done by the entity",
+        "parameters": [
+          {
+            "name": "entity-id",
+            "in": "path",
+            "description": "the unqiue identification code for the entity",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Amanah"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully all the historical assessment details related to the latest maturity assessment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_1"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/entity/{entity-id}/assessment": {
+      "get": {
+        "summary": "Provide the maturity assessment report for the entity for a specific year other than the latest one",
+        "description": "Return all the assessment details related to the maturity assessment done by the entity for a specific year other than the latest one",
+        "parameters": [
+          {
+            "name": "entity-id",
+            "in": "path",
+            "description": "the unqiue identification code for the entity",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Amanah"
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "description": "the year for which the assessment report is required",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2019
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully all the assessment details related to the  maturity assessment for the specified year",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_2"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/entity/{entity-id}/assessment/history": {
+      "get": {
+        "summary": "Provide the historical maturity assessment report for the entity for a specific year other than the latest one",
+        "description": "Return all the historical assessment details related to the maturity assessment done by the entity for a specific year other than the latest one",
+        "parameters": [
+          {
+            "name": "entity-id",
+            "in": "path",
+            "description": "the unqiue identification code for the entity",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Amanah"
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "description": "the year for which the assessment report is required",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2019
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return successfully all the historical assessment details related to the  maturity assessment for the specified year",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200_3"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "pillarsData": {
+        "type": "array",
+        "description": "collection of pillars for the assessment and all related information (sections and score) for each pillar",
+        "items": {
+          "$ref": "#/components/schemas/pillarsData_inner"
+        }
+      },
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "maturityLevelDescription": {
+            "type": "string",
+            "description": "description of the current level of maturity for the entity"
+          },
+          "maturityLevelYear": {
+            "type": "string",
+            "description": "the latest year when the marurity assessment was reported for the entity"
+          },
+          "maturityLevelValue": {
+            "type": "string",
+            "description": "the latest value of the maturity assessment reported by the entity on a scale of 1 to 5"
+          },
+          "measuredYears": {
+            "type": "array",
+            "description": "all the years in which the measurement for the entity was conducted - for filteration purposes",
+            "items": {
+              "type": "string"
+            }
+          },
+          "maturityLevelPillars": {
+            "$ref": "#/components/schemas/pillarsData"
+          }
+        },
+        "example": {
+          "maturityLevelDescription": "نموذج وصف لمستوى تقييم نضج المنظمة",
+          "maturityLevelYear": "2022",
+          "maturityLevelValue": "4",
+          "measuredYears": [
+            "2022",
+            "2019",
+            "2015"
+          ],
+          "maturityLevelPillars": [
+            {
+              "id": "01",
+              "name": "إدارة الإستراتيجية",
+              "currentYear": "2022",
+              "currentValue": "5",
+              "previousYear": "2019",
+              "previousValue": "4",
+              "scoreChange": "+1",
+              "sections": [
+                {
+                  "id": "101",
+                  "name": "مراجعة الإستراتيجية",
+                  "score": "4"
+                },
+                {
+                  "id": "102",
+                  "name": "مواءمة وتعميم الإستراتيجية",
+                  "score": "4"
+                },
+                {
+                  "id": "103",
+                  "name": "ترجمه الإستراتيجية",
+                  "score": "5"
+                },
+                {
+                  "id": "104",
+                  "name": "التحليل والتوجيه الإستراتيجية",
+                  "score": "5"
+                }
+              ]
+            },
+            {
+              "id": "02",
+              "name": "إدارة الأداء",
+              "currentYear": "2022",
+              "currentValue": "4",
+              "previousYear": "2019",
+              "previousValue": "4",
+              "scoreChange": "0",
+              "sections": [
+                {
+                  "id": "201",
+                  "name": "مراجعه وتحسين الأداء",
+                  "score": "4"
+                },
+                {
+                  "id": "202",
+                  "name": "إصدار تقارير الأداء",
+                  "score": "4"
+                },
+                {
+                  "id": "203",
+                  "name": "تحليل الأداء",
+                  "score": "5"
+                },
+                {
+                  "id": "204",
+                  "name": "سلامة وجمع البيانات",
+                  "score": "5"
+                }
+              ]
+            },
+            {
+              "id": "03",
+              "name": "إدارة المبادرات",
+              "currentYear": "2022",
+              "currentValue": "4",
+              "previousYear": "2019",
+              "previousValue": "3",
+              "scoreChange": "+1",
+              "sections": [
+                {
+                  "id": "301",
+                  "name": "أصحاب المصلحة بالمبادرات",
+                  "score": "4"
+                },
+                {
+                  "id": "302",
+                  "name": "تنفيذ المبادرات واصدار التقارير",
+                  "score": "4"
+                },
+                {
+                  "id": "303",
+                  "name": "مخاطر المبادرات والتحاكم بالتكلفة",
+                  "score": "5"
+                },
+                {
+                  "id": "304",
+                  "name": "تخطيط المبادرات",
+                  "score": "5"
+                }
+              ]
+            },
+            {
+              "id": "04",
+              "name": "إدارة التغير وثقافة الأداء",
+              "currentYear": "2022",
+              "currentValue": "4",
+              "previousYear": "2019",
+              "previousValue": "5",
+              "scoreChange": "-1",
+              "sections": [
+                {
+                  "id": "401",
+                  "name": "التعليم المؤسسي",
+                  "score": "5"
+                },
+                {
+                  "id": "402",
+                  "name": "ثقافة الأداء",
+                  "score": "5"
+                },
+                {
+                  "id": "403",
+                  "name": "إدارة التواصل",
+                  "score": "4"
+                },
+                {
+                  "id": "404",
+                  "name": "خطة إدارة التغير وإدارة أصحاب المصلحة",
+                  "score": "5"
+                }
+              ]
+            },
+            {
+              "id": "05",
+              "name": "إدارة تجربة المستفيد",
+              "currentYear": "2022",
+              "currentValue": "5",
+              "previousYear": "2019",
+              "previousValue": "3",
+              "scoreChange": "+2",
+              "sections": [
+                {
+                  "id": "501",
+                  "name": "إصدار تقارير تجربة المستفيد",
+                  "score": "4"
+                },
+                {
+                  "id": "502",
+                  "name": "تحليل بيانات تجربة المستفيد",
+                  "score": "4"
+                },
+                {
+                  "id": "503",
+                  "name": "جمع بيانات تجربة المستفيد",
+                  "score": "5"
+                },
+                {
+                  "id": "504",
+                  "name": "تخطيط تجربة المستفيد",
+                  "score": "5"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "inline_response_200_1": {
+        "type": "object",
+        "properties": {
+          "minYear": {
+            "type": "string",
+            "description": "the year of the first maturity assessment result for the entity"
+          },
+          "maxYear": {
+            "type": "string",
+            "description": "the year of the latest maturity assessment result for the entity"
+          },
+          "historicalData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_1_historicalData"
+            }
+          }
+        },
+        "example": {
+          "minYear": "2015",
+          "maxYear": "2022",
+          "historicalData": [
+            {
+              "pillarId": "01",
+              "pillarName": "إدارة الإستراتيجية",
+              "data": [
+                {
+                  "year": "2022",
+                  "value": "5",
+                  "scoreChange": "+1"
+                },
+                {
+                  "year": "2019",
+                  "value": "4",
+                  "scoreChange": "0"
+                },
+                {
+                  "year": "2015",
+                  "value": "4",
+                  "scoreChange": "0"
+                }
+              ]
+            },
+            {
+              "pillarId": "02",
+              "pillarName": "إدارة الأداء",
+              "data": [
+                {
+                  "year": "2022",
+                  "value": "4",
+                  "scoreChange": "0"
+                },
+                {
+                  "year": "2019",
+                  "value": "4",
+                  "scoreChange": "+1"
+                },
+                {
+                  "year": "2015",
+                  "value": "3",
+                  "scoreChange": "0"
+                }
+              ]
+            },
+            {
+              "pillarId": "03",
+              "pillarName": "إدارة المبادرات",
+              "data": [
+                {
+                  "year": "2022",
+                  "value": "4",
+                  "scoreChange": "+1"
+                },
+                {
+                  "year": "2019",
+                  "value": "3",
+                  "scoreChange": "+1"
+                },
+                {
+                  "year": "2015",
+                  "value": "2",
+                  "scoreChange": "0"
+                }
+              ]
+            },
+            {
+              "pillarId": "04",
+              "pillarName": "إدارة التغير وثقافة الأداء",
+              "data": [
+                {
+                  "year": "2022",
+                  "value": "4",
+                  "scoreChange": "-1"
+                },
+                {
+                  "year": "2019",
+                  "value": "5",
+                  "scoreChange": "+1"
+                },
+                {
+                  "year": "2015",
+                  "value": "4",
+                  "scoreChange": "0"
+                }
+              ]
+            },
+            {
+              "pillarId": "05",
+              "pillarName": "إدارة تجربة المستفيد",
+              "data": [
+                {
+                  "year": "2022",
+                  "value": "5",
+                  "scoreChange": "+2"
+                },
+                {
+                  "year": "2019",
+                  "value": "3",
+                  "scoreChange": "-1"
+                },
+                {
+                  "year": "2015",
+                  "value": "4",
+                  "scoreChange": "0"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "inline_response_200_2": {
+        "type": "object",
+        "properties": {
+          "maturityLevelDescription": {
+            "type": "string",
+            "description": "description of the current level of maturity for the entity"
+          },
+          "maturityLevelYear": {
+            "type": "string",
+            "description": "the year when the maturity assessment was reported for the entity"
+          },
+          "maturityLevelValue": {
+            "type": "string",
+            "description": "the  value of the maturity assessment reported by the entity on a scale of 1 to 5"
+          },
+          "measuredYears": {
+            "type": "array",
+            "description": "all the years in which the measurement for the entity was conducted - for filteration purposes",
+            "items": {
+              "type": "string"
+            }
+          },
+          "maturityLevelPillars": {
+            "$ref": "#/components/schemas/pillarsData"
+          }
+        },
+        "example": {
+          "maturityLevelDescription": "نموذج وصف لمستوى تقييم نضج المنظمة",
+          "maturityLevelYear": "2019",
+          "maturityLevelValue": "4",
+          "measuredYears": [
+            "2022",
+            "2019",
+            "2015"
+          ],
+          "maturityLevelPillars": [
+            {
+              "id": "01",
+              "name": "إدارة الإستراتيجية",
+              "currentYear": "2019",
+              "currentValue": "4",
+              "previousYear": "2015",
+              "previousValue": "4",
+              "scoreChange": "0",
+              "sections": [
+                {
+                  "id": "101",
+                  "name": "مراجعة الإستراتيجية",
+                  "score": "4"
+                },
+                {
+                  "id": "102",
+                  "name": "مواءمة وتعميم الإستراتيجية",
+                  "score": "4"
+                },
+                {
+                  "id": "103",
+                  "name": "ترجمه الإستراتيجية",
+                  "score": "5"
+                },
+                {
+                  "id": "104",
+                  "name": "التحليل والتوجيه الإستراتيجية",
+                  "score": "5"
+                }
+              ]
+            },
+            {
+              "id": "02",
+              "name": "إدارة الأداء",
+              "currentYear": "2019",
+              "currentValue": "4",
+              "previousYear": "2015",
+              "previousValue": "3",
+              "scoreChange": "+1",
+              "sections": [
+                {
+                  "id": "201",
+                  "name": "مراجعه وتحسين الأداء",
+                  "score": "4"
+                },
+                {
+                  "id": "202",
+                  "name": "إصدار تقارير الأداء",
+                  "score": "4"
+                },
+                {
+                  "id": "203",
+                  "name": "تحليل الأداء",
+                  "score": "5"
+                },
+                {
+                  "id": "204",
+                  "name": "سلامة وجمع البيانات",
+                  "score": "5"
+                }
+              ]
+            },
+            {
+              "id": "03",
+              "name": "إدارة المبادرات",
+              "currentYear": "2019",
+              "currentValue": "3",
+              "previousYear": "2015",
+              "previousValue": "2",
+              "scoreChange": "+1",
+              "sections": [
+                {
+                  "id": "301",
+                  "name": "أصحاب المصلحة بالمبادرات",
+                  "score": "4"
+                },
+                {
+                  "id": "302",
+                  "name": "تنفيذ المبادرات واصدار التقارير",
+                  "score": "4"
+                },
+                {
+                  "id": "303",
+                  "name": "مخاطر المبادرات والتحاكم بالتكلفة",
+                  "score": "5"
+                },
+                {
+                  "id": "304",
+                  "name": "تخطيط المبادرات",
+                  "score": "5"
+                }
+              ]
+            },
+            {
+              "id": "04",
+              "name": "إدارة التغير وثقافة الأداء",
+              "currentYear": "2019",
+              "currentValue": "5",
+              "previousYear": "2015",
+              "previousValue": "4",
+              "scoreChange": "+1",
+              "sections": [
+                {
+                  "id": "401",
+                  "name": "التعليم المؤسسي",
+                  "score": "5"
+                },
+                {
+                  "id": "402",
+                  "name": "ثقافة الأداء",
+                  "score": "5"
+                },
+                {
+                  "id": "403",
+                  "name": "إدارة التواصل",
+                  "score": "4"
+                },
+                {
+                  "id": "404",
+                  "name": "خطة إدارة التغير وإدارة أصحاب المصلحة",
+                  "score": "5"
+                }
+              ]
+            },
+            {
+              "id": "05",
+              "name": "إدارة تجربة المستفيد",
+              "currentYear": "2019",
+              "currentValue": "3",
+              "previousYear": "2015",
+              "previousValue": "4",
+              "scoreChange": "-1",
+              "sections": [
+                {
+                  "id": "501",
+                  "name": "إصدار تقارير تجربة المستفيد",
+                  "score": "4"
+                },
+                {
+                  "id": "502",
+                  "name": "تحليل بيانات تجربة المستفيد",
+                  "score": "4"
+                },
+                {
+                  "id": "503",
+                  "name": "جمع بيانات تجربة المستفيد",
+                  "score": "5"
+                },
+                {
+                  "id": "504",
+                  "name": "تخطيط تجربة المستفيد",
+                  "score": "5"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "inline_response_200_3": {
+        "type": "object",
+        "properties": {
+          "minYear": {
+            "type": "string",
+            "description": "the year of the first maturity assessment result for the entity"
+          },
+          "maxYear": {
+            "type": "string",
+            "description": "the year of the latest maturity assessment result for the entity"
+          },
+          "historicalSummary": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_1_historicalData"
+            }
+          }
+        },
+        "example": {
+          "minYear": "2015",
+          "maxYear": "2022",
+          "historicalView": [
+            {
+              "pillarId": "01",
+              "pillarName": "إدارة الإستراتيجية",
+              "data": [
+                {
+                  "year": "2022",
+                  "value": "5",
+                  "scoreChange": "+1"
+                },
+                {
+                  "year": "2019",
+                  "value": "4",
+                  "scoreChange": "0"
+                },
+                {
+                  "year": "2015",
+                  "value": "4",
+                  "scoreChange": "0"
+                }
+              ]
+            },
+            {
+              "pillarId": "02",
+              "pillarName": "إدارة الأداء",
+              "data": [
+                {
+                  "year": "2022",
+                  "value": "4",
+                  "scoreChange": "0"
+                },
+                {
+                  "year": "2019",
+                  "value": "4",
+                  "scoreChange": "+1"
+                },
+                {
+                  "year": "2015",
+                  "value": "3",
+                  "scoreChange": "0"
+                }
+              ]
+            },
+            {
+              "pillarId": "03",
+              "pillarName": "إدارة المبادرات",
+              "data": [
+                {
+                  "year": "2022",
+                  "value": "4",
+                  "scoreChange": "+1"
+                },
+                {
+                  "year": "2019",
+                  "value": "3",
+                  "scoreChange": "+1"
+                },
+                {
+                  "year": "2015",
+                  "value": "2",
+                  "scoreChange": "0"
+                }
+              ]
+            },
+            {
+              "pillarId": "04",
+              "pillarName": "إدارة التغير وثقافة الأداء",
+              "data": [
+                {
+                  "year": "2022",
+                  "value": "4",
+                  "scoreChange": "-1"
+                },
+                {
+                  "year": "2019",
+                  "value": "5",
+                  "scoreChange": "+1"
+                },
+                {
+                  "year": "2015",
+                  "value": "4",
+                  "scoreChange": "0"
+                }
+              ]
+            },
+            {
+              "pillarId": "05",
+              "pillarName": "إدارة تجربة المستفيد",
+              "data": [
+                {
+                  "year": "2022",
+                  "value": "5",
+                  "scoreChange": "+2"
+                },
+                {
+                  "year": "2019",
+                  "value": "3",
+                  "scoreChange": "-1"
+                },
+                {
+                  "year": "2015",
+                  "value": "4",
+                  "scoreChange": "0"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "pillarsData_inner": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "unique identification number of the pillar"
+          },
+          "name": {
+            "type": "string",
+            "description": "the name of the pillar"
+          },
+          "currentYear": {
+            "type": "string",
+            "description": "the year of the current measurement of the pillar"
+          },
+          "currentValue": {
+            "type": "string",
+            "description": "the value of the current measurement of the pillar on a scale of 1 to 5"
+          },
+          "previousYear": {
+            "type": "string",
+            "description": "the year of the previous measurement of the pillar"
+          },
+          "previousValue": {
+            "type": "string",
+            "description": "the value of the previous measurement of the pillar on a scale of 1 to 5"
+          },
+          "scoreChange": {
+            "type": "string",
+            "description": "the change in the score for the pillar from the previous measured value - positive or negative value"
+          },
+          "sections": {
+            "type": "array",
+            "description": "the detail breakdown of pillar score by  sections",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "unique identification number of the section"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "name of the section"
+                },
+                "score": {
+                  "type": "string",
+                  "description": "the score of the section on a scale of 1 to 5"
+                }
+              }
+            }
+          }
+        }
+      },
+      "inline_response_200_1_data": {
+        "properties": {
+          "year": {
+            "type": "string",
+            "description": "the year for which the value of the pillar was captured"
+          },
+          "value": {
+            "type": "string",
+            "description": "the value of the pillar on a scale of 1 to 5"
+          },
+          "scoreChange": {
+            "type": "string",
+            "description": "the change in the score of the pillar from the previous measurement"
+          }
+        }
+      },
+      "inline_response_200_1_historicalData": {
+        "type": "object",
+        "properties": {
+          "pillarId": {
+            "type": "string",
+            "description": "unique identification of the pillar"
+          },
+          "pillarName": {
+            "type": "string",
+            "description": "the name of the pillar"
+          },
+          "data": {
+            "type": "array",
+            "description": "the list of values for the pillar measurement for the entity over the years",
+            "items": {
+              "$ref": "#/components/schemas/inline_response_200_1_data"
+            }
+          }
+        }
+      }
+    }
+  }
+}
